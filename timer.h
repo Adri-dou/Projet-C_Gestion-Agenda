@@ -1,9 +1,9 @@
 //
-// Created by flasque on 24/06/2022.
+// Created by adido on 26/10/2023.
 //
 
-#ifndef UNTITLED1_TIMER_H
-#define UNTITLED1_TIMER_H
+#ifndef PROJET_C_GESTION_AGENDA_TIMER_H
+#define PROJET_C_GESTION_AGENDA_TIMER_H
 
 #include <time.h>
 
@@ -45,4 +45,5 @@ void displayTime();
  */
 char *getTimeAsString();
 
-#endif //UNTITLED1_TIMER_H
+
+#endif //PROJET_C_GESTION_AGENDA_TIMER_H

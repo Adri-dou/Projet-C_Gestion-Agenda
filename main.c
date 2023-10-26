@@ -1,6 +1,8 @@
 #include <stdio.h>
+#include "timer.h"
 
 int main() {
-    printf("Hello, World!\n");
+    printf("Display time : ");
+    displayTime();
     return 0;
 }
