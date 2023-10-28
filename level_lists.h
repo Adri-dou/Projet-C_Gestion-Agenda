@@ -1,0 +1,35 @@
+
+#ifndef PROJET_C_GESTION_AGENDA_LEVEL_LISTS_H
+#define PROJET_C_GESTION_AGENDA_LEVEL_LISTS_H
+
+#include "cells.h"
+
+// The level list structure
+typedef struct s_d_list {
+    t_d_cell **heads;
+    int max_level;
+} t_d_list;
+
+
+// FUNCTIONS :
+
+// Creates a new empty level list
+t_d_list createEmptyList(int);
+
+// Add a new cell in head
+void addCellHead(t_d_list *, t_d_cell *);
+
+// Displays the list's levels
+void displayLevel(t_d_list, int);
+
+// Displays the list's cells
+void displayList(t_d_list);
+
+// (OPTION) Displays the levels aligned
+void alignedDisplay(t_d_list);
+
+// Insert new cell, sorted
+void insertCell(t_d_list *, t_d_cell);
+
+
+#endif //PROJET_C_GESTION_AGENDA_LEVEL_LISTS_H

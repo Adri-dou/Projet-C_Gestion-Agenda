@@ -1,6 +1,3 @@
-//
-// Created by adido on 26/10/2023.
-//
 
 #ifndef PROJET_C_GESTION_AGENDA_TIMER_H
 #define PROJET_C_GESTION_AGENDA_TIMER_H
