@@ -29,7 +29,7 @@ void displayList(t_d_list);
 void alignedDisplay(t_d_list);
 
 // Insert new cell, sorted
-void insertCell(t_d_list *, t_d_cell);
+void insertCell(t_d_list *, t_d_cell *);
 
 
 #endif //PROJET_C_GESTION_AGENDA_LEVEL_LISTS_H

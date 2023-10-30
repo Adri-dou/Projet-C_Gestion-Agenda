@@ -7,12 +7,17 @@ int main() {
     printf("On adore ce projet HAHA\n");
 
     t_d_list my_list = createEmptyList(5);
-    t_d_cell new_cell = createCell(12, 4);
-    t_d_cell new_cell2 = createCell(7, 2);
-    t_d_cell new_cell3 = createCell(4, 3);
-    addCellHead(&my_list, &new_cell);
-    addCellHead(&my_list, &new_cell2);
-    addCellHead(&my_list, &new_cell3);
+
+    addCellHead(&my_list, createCell(32, 5));
+    insertCell(&my_list, createCell(59, 1));
+    insertCell(&my_list, createCell(31, 2));
+    insertCell(&my_list, createCell(18, 4));
+    insertCell(&my_list, createCell(59, 5));
+    insertCell(&my_list, createCell(101, 3));
+    insertCell(&my_list, createCell(9, 2));
+    insertCell(&my_list, createCell(25, 1));
+    insertCell(&my_list, createCell(56, 3));
+
     alignedDisplay(my_list);
 
     return 0;

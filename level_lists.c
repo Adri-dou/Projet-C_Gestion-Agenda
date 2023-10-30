@@ -58,3 +58,29 @@ void alignedDisplay(t_d_list my_list){
         printf("-->NULL\n");
     }
 }
+
+void insertCell(t_d_list * my_list, t_d_cell * new_cell) {
+
+    if ((my_list->heads[0] == NULL) || (new_cell->value <= my_list->heads[0]->value)) addCellHead(my_list, new_cell);
+
+    else {
+        int level;   // Check in case the Cell has a greater level than max
+        if (my_list->max_level >= new_cell->level) level = new_cell->level;
+        else level = my_list->max_level;
+
+        t_d_cell *temp;
+
+        for (int i = level - 1; i >= 0; i--) {
+            temp = my_list->heads[i];
+            if ((temp == NULL) || (temp->value > new_cell->value)) {
+                new_cell->next[i] = my_list->heads[i];
+                my_list->heads[i] = new_cell;
+            }
+            else {
+                while ((temp->next[i] != NULL) && (new_cell->value > temp->next[i]->value)) temp = temp->next[i];
+                new_cell->next[i] = temp->next[i];
+                temp->next[i] = new_cell;
+            }
+        }
+    }
+}

@@ -10,7 +10,7 @@ typedef struct s_d_cell {
 
 
 // Function to create a new cell
-t_d_cell createCell(int , int);
+t_d_cell * createCell(int , int);
 
 
 #endif //PROJET_C_GESTION_AGENDA_CELLS_H
