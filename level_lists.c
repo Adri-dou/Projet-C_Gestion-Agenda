@@ -1,6 +1,7 @@
 
 #include <stdio.h>
 #include <malloc.h>
+#include <math.h>
 #include "level_lists.h"
 
 t_d_list createEmptyList(int lvl){
@@ -83,4 +84,26 @@ void insertCell(t_d_list * my_list, t_d_cell * new_cell) {
             }
         }
     }
+}
+
+t_d_list createFullList(int n){
+    t_d_list new_list = createEmptyList(n);
+    int nb_cells = pow(2, n) -1;
+    int *tab = malloc(nb_cells * sizeof(int));
+    int step = 2, k=1;
+
+    // Initialize with 0
+    for (int i=0; i<nb_cells; i++) tab[i] = 0;
+
+    while (step < nb_cells){
+        for (int i=step-1; i<nb_cells; i+=step)  tab[i]++;
+        k++;
+        step = pow(2, k);
+    }
+
+    // Let's fill the list
+    for (int i=nb_cells-1; i>=0; i--){
+        addCellHead(&new_list, createCell(i+1, tab[i]+1));
+    }
+    return new_list;
 }

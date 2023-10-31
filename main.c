@@ -1,11 +1,17 @@
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
 #include "level_lists.h"
+#include "search.h"
+#include "timer.h"
 
 
 int main() {
     printf("On adore ce projet HAHA\n");
 
+    /*
+    // Part I Tests
     t_d_list my_list = createEmptyList(5);
 
     addCellHead(&my_list, createCell(32, 5));
@@ -19,6 +25,38 @@ int main() {
     insertCell(&my_list, createCell(56, 3));
 
     alignedDisplay(my_list);
+    */
+
+
+    // Create a writing file
+    FILE *log_file = fopen("log.txt","w");
+    char format[] = "%d\t%s\t%s\n" ;
+    int level = 5, nb_searches = 10000;
+    char *time_lvl0;
+    char *time_all_levels;
+
+    t_d_list my_list;
+    while (level <= 25) {
+
+        int nb_cells = (int) pow(2, level) -1;
+        printf("%2d : ", level);
+        my_list = createFullList(level);
+
+        startTimer();
+        for (int i=0; i<nb_searches; i++) classicalSearch(my_list, rand()%nb_cells+1);
+        stopTimer();
+        time_lvl0 = getTimeAsString();
+
+        startTimer();
+        for (int i=0; i<nb_searches; i++) levelSearch(my_list, rand()%nb_cells+1);
+        stopTimer();
+        time_all_levels = getTimeAsString();
+
+        fprintf(log_file, format, level, time_lvl0, time_all_levels);
+        level++;
+    }
+
+    fclose(log_file);
 
     return 0;
 }
