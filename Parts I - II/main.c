@@ -8,7 +8,6 @@
 
 
 int main() {
-    printf("On adore ce projet HAHA\n");
 
     /*
     // Part I Tests

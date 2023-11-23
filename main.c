@@ -8,60 +8,56 @@
 
 
 int main() {
-    printf("On adore ce projet HAHA\n");
 
-    /*
-    // Part I Tests
-    t_d_list my_list = createEmptyList(5);
+    // Ici il faudra charger le fichier de l'agenda
+    char user_input[50];
+    t_d_list schedule = createEmptyList(4);
 
-    addCellHead(&my_list, createCell(32, 5));
-    insertCell(&my_list, createCell(59, 1));
-    insertCell(&my_list, createCell(31, 2));
-    insertCell(&my_list, createCell(18, 4));
-    insertCell(&my_list, createCell(59, 5));
-    insertCell(&my_list, createCell(101, 3));
-    insertCell(&my_list, createCell(9, 2));
-    insertCell(&my_list, createCell(25, 1));
-    insertCell(&my_list, createCell(56, 3));
+    printf("HELLO, welcome to your favourite appointment schedule application !\n\n"
+           "\t**************************************************\n"
+           "\t****           GESTIONNAIRE D'AGENDA          ****\n"
+           "\t**************************************************\n");
+    // Menu
+    while (1){
 
-    alignedDisplay(my_list);
-    */
+        printf("\n >> ");
+        scanf("%s", user_input);
+        if (user_input[0] == '\0')
+            printf("\nNe soyez pas timide, utilisez le menu pour effectuer des actions !");
+        else if (user_input[1] != '\0')
+            printf("\nSaisie trop longue ! Un seul chiffre suffit ;)");
 
-    // Part 2 Tests
-    // Create a writing file
-    FILE *log_file = fopen("log.txt","w");
-    char format[] = "%d\t%s\t%s\n" ;
-    int level = 5, nb_searches = 1000;
-    char *time_lvl0;
-    char *time_all_levels;
+        else if (user_input[0] == '1') ; // Rechercher un contact
 
-    t_d_list my_list;
-    while (level <= 30) {
+        else if (user_input[0] == '2') displayList(schedule); // Afficher un contact et ses rdv
 
-        int nb_cells = (int) pow(2, level) -1;
-        printf("%2d : ", level);
-        my_list = createFullList(level);
+        else if (user_input[0] == '3') {
+            t_contact * newcontact = createContact();
+            printf("%s\n", newcontact->name);
+            for (int i=0; newcontact->ref_ID[i] != '\0'; i++) printf("test:%c ", newcontact->ref_ID[i]);
+            insertCell(&schedule, createCell(newcontact, 4)); // Nouveau contact
+        }
 
-        startTimer();
-        for (int i=0; i<nb_searches; i++) classicalSearch(my_list, rand()%nb_cells+1);
-        stopTimer();
-        time_lvl0 = getTimeAsString();
+        else if (user_input[0] == '4') ; // Ajouter un rdv
 
-        startTimer();
-        for (int i=0; i<nb_searches; i++) levelSearch(my_list, rand()%nb_cells+1);
-        stopTimer();
-        time_all_levels = getTimeAsString();
+        else if (user_input[0] == '5') ; // Suprimer rdv
 
-        fprintf(log_file, format, level, time_lvl0, time_all_levels);
-        level++;
+        else if (user_input[0] == '6')
+            printf("\n=============== ACTIONS DISPONIBLES ==============\n"
+                   "        1 : Rechercher un contact\n"
+                   "        2 : Afficher les rendez-vous d'un contact\n"
+                   "        3 : Creer un nouveau contact\n"
+                   "        4 : Ajouter un rendez-vous\n"
+                   "        5 : Supprimer un rendez-vous\n"
+                   "        6 : Afficher ce menu\n"
+                   "        7 : Quitter l'application\n");
+
+        else if (user_input[0] == '7') {
+            printf("\nAu revoir et a bientot !");
+            return 0;
+        }
+
+        else printf("\nEntree invalide, afficher le menu avec 6 ;)");
     }
-
-    fclose(log_file);
-
-
-
-
-
-
-    return 0;
+    // Sauvegarder les contacts
 }
