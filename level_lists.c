@@ -25,7 +25,7 @@ void displayLevel(t_d_list my_list, int lvl_display){
     temp = my_list.heads[lvl_display];
     printf("[list head_%d @-]", lvl_display);
     while (temp != NULL){
-        printf("-->[%c|@-]", temp->value->ref_ID[3]);
+        printf("-->[%s|@-]", temp->value->ref_ID);
         temp = temp->next[lvl_display];
     }
     printf("-->NULL\n");
@@ -58,7 +58,7 @@ void alignedDisplay(t_d_list my_list){
 }
 
 void insertCell(t_d_list * my_list, t_d_cell * new_cell) {
-    if ((my_list->heads[0] == NULL) || (new_cell->value->ref_ID <= my_list->heads[0]->value->ref_ID))
+    if ((my_list->heads[0] == NULL) || (strcmp(new_cell->value->ref_ID, my_list->heads[0]->value->ref_ID) < 0))
         addCellHead(my_list, new_cell);
 
     else {
@@ -70,11 +70,11 @@ void insertCell(t_d_list * my_list, t_d_cell * new_cell) {
 
         for (int i = level - 1; i >= 0; i--) {
             temp = my_list->heads[i];
-            if ((temp == NULL) || (temp->value->ref_ID > new_cell->value->ref_ID)) {
+            if ((temp == NULL) || (strcmp(temp->value->ref_ID, new_cell->value->ref_ID) > 0)) {
                 new_cell->next[i] = my_list->heads[i];
                 my_list->heads[i] = new_cell;
             } else {
-                while ((temp->next[i] != NULL) && (new_cell->value->ref_ID > temp->next[i]->value->ref_ID))
+                while ((temp->next[i] != NULL) && (strcmp(new_cell->value->ref_ID, temp->next[i]->value->ref_ID) > 0))
                     temp = temp->next[i];
                 new_cell->next[i] = temp->next[i];
                 temp->next[i] = new_cell;
