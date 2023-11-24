@@ -9,7 +9,9 @@
 // int classicalSearch(t_d_list, int);  (doesn't exist anymore)
 
 // Search a value from high levels
-int levelSearch(t_d_list, char *);
 
+t_contact * levelSearch(t_d_list, char *);
+
+t_contact * seekContact(t_d_list);
 
 #endif //PROJET_C_GESTION_AGENDA_SEARCH_H

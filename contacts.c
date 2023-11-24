@@ -1,5 +1,4 @@
 
-#include <stdlib.h>
 #include <ctype.h>
 #include "contacts.h"
 
@@ -50,4 +49,3 @@ t_contact * createContact(){
     //printf("%s", new_contact->ref_ID);
     return new_contact;
 }
-

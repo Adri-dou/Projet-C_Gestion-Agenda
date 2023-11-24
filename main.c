@@ -2,9 +2,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include "level_lists.h"
+
 #include "search.h"
-#include "timer.h"
+#include "ui.h"
 
 
 int main() {
@@ -17,47 +17,66 @@ int main() {
            "\t**************************************************\n"
            "\t****           GESTIONNAIRE D'AGENDA          ****\n"
            "\t**************************************************\n");
+    displayMainMenu();
     // Menu
     while (1){
 
-        printf("\n >> ");
-        scanf(" %s", user_input);
+        getUserInput(user_input);
+
         if (user_input[0] == '\0')
             printf("\nNe soyez pas timide, utilisez le menu pour effectuer des actions !");
         else if (user_input[1] != '\0')
             printf("\nSaisie trop longue ! Un seul chiffre suffit ");
 
-        else if (user_input[0] == '1') ; // Rechercher un contact
 
-        else if (user_input[0] == '2') displayList(schedule); // Afficher un contact et ses rdv
+        // Rechercher un contact
+        else if (user_input[0] == '1') {
+            t_contact * ctc = seekContact(schedule);
+            if (ctc == NULL) {
+                printf("\nLe contact n'existe pas.");
+                displayMainMenu();
+            }
+            else {
+                printf("\n\n    =======    %s %s    =======",ctc->firstname, ctc->name);
+                displaySubMenu();
 
-        else if (user_input[0] == '3') {
+                while (1) {
+                    getUserInput(user_input);
+
+                    if (user_input[0] == '1') ; //Afficher les rdv
+
+                    else if (user_input[0] == '2'); // Ajouter un rdv
+
+                    else if (user_input[0] == '3'); // Suprimer rdv
+
+                    else if (user_input[0] == '4') {
+                        displayMainMenu(); break;
+                    } else {
+                        printf("\nEntree invalide !"); displaySubMenu();
+                    }
+                }
+            }
+        }
+
+        else if (user_input[0] == '!') displayList(schedule); // Afficher un contact et ses rdv
+
+        else if (user_input[0] == '2') {
             t_contact * newcontact = createContact();
             printf("%s\n", newcontact->name);
             printf("test:%s ", newcontact->ref_ID);
             insertCell(&schedule, createCell(newcontact, 4)); // Nouveau contact
         }
 
-        else if (user_input[0] == '4') ; // Ajouter un rdv
 
-        else if (user_input[0] == '5') ; // Suprimer rdv
-
-        else if (user_input[0] == '6')
-            printf("\n=============== ACTIONS DISPONIBLES ==============\n"
-                   "        1 : Rechercher un contact (encore a faire)\n"
-                   "        2 : Afficher les rendez-vous d'un contact (affichage a adapter)\n"
-                   "        3 : Creer un nouveau contact (fonctionnel)\n"
-                   "        4 : Ajouter un rendez-vous (a faire)\n"
-                   "        5 : Supprimer un rendez-vous (a faire)\n"
-                   "        6 : Afficher ce menu (trkl)\n"
-                   "        7 : Quitter l'application\n");
-
-        else if (user_input[0] == '7') {
+        else if (user_input[0] == '3') {
             printf("\nAu revoir et a bientot !");
             return 0;
         }
 
-        else printf("\nEntree invalide, afficher le menu avec 6 ;)");
+        else {
+            printf("\nEntree invalide !"); displayMainMenu();
+        }
+
     }
     // Sauvegarder les contacts
 }

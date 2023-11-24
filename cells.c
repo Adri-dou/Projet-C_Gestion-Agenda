@@ -1,6 +1,6 @@
 
-#include <malloc.h>
 #include "cells.h"
+
 
 t_d_cell * createCell(t_contact * ctc, int lvl){
     t_d_cell *new_cell = malloc(sizeof(t_d_cell));

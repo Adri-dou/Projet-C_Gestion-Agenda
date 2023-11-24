@@ -4,8 +4,13 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+
+#include "ui.h"
+
 
 #define TAILLE 50
+
 
 // STRUCTURES
 typedef struct s_meeting{
@@ -23,8 +28,6 @@ typedef struct s_contact{
 
 
 // FUNCTIONS
-
-char * scanString();
 
 int SpecialChar(char*);
 
