@@ -46,7 +46,7 @@ void alignedDisplay(t_d_list my_list){
         printf("[list head_%d @-]", i);
         while (temp1 != NULL) {
             if ((temp2 != NULL) && (temp2->value->ref_ID == temp1->value->ref_ID)) {
-                printf("-->[%10s|@-]", temp2->value->name);
+                printf("-->[%s|@-]", temp2->value->name);
                 temp2 = temp2->next[i];
             } else printf("------------------");
             temp1 = temp1->next[0];
@@ -60,23 +60,20 @@ void insertCell(t_d_list * my_list, t_d_cell * new_cell) {
         addCellHead(my_list, new_cell);
 
     else {
-        int level;   // Check in case the Cell has a greater level than max
-        if (my_list->max_level >= new_cell->level) level = new_cell->level;
-        else level = my_list->max_level;
 
         t_d_cell *temp;
 
-        for (int i = level - 1; i >= 0; i--) {
+        for (int i = my_list->max_level - 1; i >= 0; i--) {
             temp = my_list->heads[i];
-            if ((temp == NULL) || (strcmp(temp->value->ref_ID, new_cell->value->ref_ID) > 0)) {
-                new_cell->next[i] = my_list->heads[i];
-                my_list->heads[i] = new_cell;
-            } else {
-                while ((temp->next[i] != NULL) && (strcmp(new_cell->value->ref_ID, temp->next[i]->value->ref_ID) > 0))
-                    temp = temp->next[i];
+
+            while ((temp->next[i] != NULL) && (strcmp(new_cell->value->ref_ID, temp->next[i]->value->ref_ID) > 0))
+                temp = temp->next[i];
+            printf("%d ", my_list->max_level-1-i);
+            if (i==0 || new_cell->value->ref_ID[my_list->max_level-1-i] != temp->value->ref_ID[my_list->max_level-1-i]){
                 new_cell->next[i] = temp->next[i];
                 temp->next[i] = new_cell;
-            }
+            } else new_cell->level--;
+
         }
     }
 }

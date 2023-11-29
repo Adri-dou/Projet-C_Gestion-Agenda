@@ -1,7 +1,5 @@
 
 #include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
 
 #include "search.h"
 #include "ui.h"
@@ -13,7 +11,7 @@ int main() {
     char user_input[50];
     t_d_list schedule = createEmptyList(4);
 
-    printf("HELLO, welcome to your favourite appointment schedule application !\n\n"
+    printf("\nHELLO, welcome to your favourite appointment schedule application !\n\n"
            "\t**************************************************\n"
            "\t****           GESTIONNAIRE D'AGENDA          ****\n"
            "\t**************************************************\n");
@@ -69,7 +67,7 @@ int main() {
 
 
         else if (user_input[0] == '3') {
-            printf("\nAu revoir et a bientot !");
+            printf("\nAu revoir et a bientot !\n\n");
             return 0;
         }
 
