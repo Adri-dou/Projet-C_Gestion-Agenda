@@ -1,7 +1,7 @@
 
 #include <stdio.h>
 
-#include "search.h"
+#include "loading.h"
 #include "ui.h"
 
 
@@ -41,7 +41,7 @@ int main() {
                 while (1) {
                     getUserInput(user_input);
 
-                    if (user_input[0] == '1') ; //Afficher les rdv
+                    if (user_input[0] == '1'); //Afficher les rdv
 
                     else if (user_input[0] == '2'); // Ajouter un rdv
 
