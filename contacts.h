@@ -28,8 +28,6 @@ typedef struct s_contact{
 
 // FUNCTIONS
 
-int SpecialChar(char*);
-
 t_contact * createContact();
 
 t_meeting * createMeeting();

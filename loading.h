@@ -3,6 +3,7 @@
 #define PROJET_C_GESTION_AGENDA_LOADING_H
 
 #include "search.h"
+#include "timer.h"
 
 
 t_d_list loadRandomPeople();

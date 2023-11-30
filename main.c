@@ -6,6 +6,7 @@
 
 int main() {
 
+    give1000RdmNames("prenoms.csv");
     // Ici il faudra charger le fichier de l'agenda
     char user_input[50];
     t_d_list schedule = createEmptyList(4);
