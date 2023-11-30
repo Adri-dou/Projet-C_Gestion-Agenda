@@ -6,8 +6,6 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "ui.h"
-
 
 #define TAILLE 50
 
@@ -15,8 +13,9 @@
 // STRUCTURES
 typedef struct s_meeting{
     /*Définit la structure des rendez-vous*/
-    int day,month,year,hour,minute;
-    char *m_description; // penser à faire l'allocation dynamique dans la fonction qui permettra d'ajouter la descriptio du meeting  " malloc(sizeof(char) * taille_texte) ";
+    int id;
+    int day, month, year, hour, minute, dhour, dminute;
+    char m_description[500]; // penser à faire l'allocation dynamique dans la fonction qui permettra d'ajouter la descriptio du meeting  " malloc(sizeof(char) * taille_texte) ";
     struct s_meeting* next_meeting;
 }t_meeting;
 
@@ -32,6 +31,12 @@ typedef struct s_contact{
 int SpecialChar(char*);
 
 t_contact * createContact();
+
+t_meeting * createMeeting();
+
+void addMeeting(t_contact *);
+
+void removeMeeting(t_contact *);
 
 
 #endif //PROJET_C_GESTION_AGENDA_CONTACTS_H

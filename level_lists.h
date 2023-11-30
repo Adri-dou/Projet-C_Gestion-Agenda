@@ -21,15 +21,6 @@ t_d_list createEmptyList(int);
 // Add a new cell in head
 void addCellHead(t_d_list *, t_d_cell *);
 
-// Displays the list's levels
-void displayLevel(t_d_list, int);
-
-// Displays the list's cells
-void displayList(t_d_list);
-
-// (OPTION) Displays the levels aligned
-void alignedDisplay(t_d_list);
-
 // Insert new cell, sorted
 void insertCell(t_d_list *, t_d_cell *);
 

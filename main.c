@@ -1,7 +1,6 @@
 
 #include <stdio.h>
 
-#include "loading.h"
 #include "ui.h"
 
 
@@ -35,22 +34,22 @@ int main() {
                 displayMainMenu();
             }
             else {
-                printf("\n\n    =======    %s %s    =======",ctc->firstname, ctc->name);
-                displaySubMenu();
+
+                displaySubMenu(ctc);
 
                 while (1) {
                     getUserInput(user_input);
 
-                    if (user_input[0] == '1'); //Afficher les rdv
+                    if (user_input[0] == '1') displayMeetings(ctc);
 
-                    else if (user_input[0] == '2'); // Ajouter un rdv
+                    else if (user_input[0] == '2') addMeeting(ctc);
 
-                    else if (user_input[0] == '3'); // Suprimer rdv
+                    else if (user_input[0] == '3') removeMeeting(ctc);
 
                     else if (user_input[0] == '4') {
                         displayMainMenu(); break;
                     } else {
-                        printf("\nEntree invalide !"); displaySubMenu();
+                        printf("\nEntree invalide !"); displaySubMenu(ctc);
                     }
                 }
             }
