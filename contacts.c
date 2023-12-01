@@ -88,6 +88,7 @@ t_meeting * createMeeting(){
     printf("\nQuel est cet evenement ?\n >>");
     fflush(stdin);
     fgets(new_meeting->m_description, sizeof(new_meeting->m_description), stdin);
+    new_meeting->m_description[strlen(new_meeting->m_description)-1] = '\0';
 
     return new_meeting;
 }

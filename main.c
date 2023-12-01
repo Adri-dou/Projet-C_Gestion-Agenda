@@ -64,6 +64,7 @@ int main() {
 
 
         else if (user_input[0] == '3') {
+            saveSchedule(schedule);
             printf("\nAu revoir et a bientot !\n\n");
             return 0;
         }
@@ -76,5 +77,4 @@ int main() {
         }
 
     }
-    // Sauvegarder les contacts
 }
