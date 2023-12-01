@@ -31,7 +31,7 @@ void insertCell(t_d_list * my_list, t_d_cell * new_cell) {
 
             while ((temp->next[i] != NULL) && (strcmp(new_cell->value->ref_ID, temp->next[i]->value->ref_ID) > 0))
                 temp = temp->next[i];
-            printf("%d ", my_list->max_level-1-i);
+            //printf("%d ", my_list->max_level-1-i);
             if (i==0 || new_cell->value->ref_ID[my_list->max_level-1-i] != temp->value->ref_ID[my_list->max_level-1-i]){
                 new_cell->next[i] = temp->next[i];
                 temp->next[i] = new_cell;

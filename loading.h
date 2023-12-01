@@ -6,7 +6,7 @@
 #include "timer.h"
 
 
-t_d_list loadRandomPeople();
+void loadRandomPeople(t_d_list *);
 
 char ** give1000RdmNames(char *);
 

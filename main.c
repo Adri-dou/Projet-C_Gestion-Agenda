@@ -6,16 +6,19 @@
 
 int main() {
 
-    give1000RdmNames("prenoms.csv");
     // Ici il faudra charger le fichier de l'agenda
+
     char user_input[50];
     t_d_list schedule = createEmptyList(4);
+    loadRandomPeople(&schedule);
+
 
     printf("\nHELLO, welcome to your favourite appointment schedule application !\n\n"
            "\t**************************************************\n"
            "\t****           GESTIONNAIRE D'AGENDA          ****\n"
            "\t**************************************************\n");
     displayMainMenu();
+
     // Menu
     while (1){
 
@@ -56,20 +59,17 @@ int main() {
             }
         }
 
-        else if (user_input[0] == '!') displayList(schedule); // Afficher un contact et ses rdv
-
-        else if (user_input[0] == '2') {
-            t_contact * newcontact = createContact();
-            printf("%s\n", newcontact->name);
-            printf("test:%s ", newcontact->ref_ID);
-            insertCell(&schedule, createCell(newcontact, 4)); // Nouveau contact
-        }
+        else if (user_input[0] == '2')
+            insertCell(&schedule, createCell(addNewContact(), 4)); // Nouveau contact
 
 
         else if (user_input[0] == '3') {
             printf("\nAu revoir et a bientot !\n\n");
             return 0;
         }
+
+        // outil de debug
+        else if (user_input[0] == '!') alignedDisplay(schedule);
 
         else {
             printf("\nEntree invalide !"); displayMainMenu();

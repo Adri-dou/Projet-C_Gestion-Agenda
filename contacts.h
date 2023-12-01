@@ -28,7 +28,9 @@ typedef struct s_contact{
 
 // FUNCTIONS
 
-t_contact * createContact();
+t_contact * addNewContact();
+
+t_contact * createContact(char*, char*);
 
 t_meeting * createMeeting();
 

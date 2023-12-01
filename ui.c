@@ -37,7 +37,7 @@ void displayLevel(t_d_list my_list, int lvl_display){
     temp = my_list.heads[lvl_display];
     printf("[list head_%d @-]", lvl_display);
     while (temp != NULL){
-        printf("-->[%s|@-]", temp->value->ref_ID);
+        printf("-->[%s|@-]", temp->value->name);
         temp = temp->next[lvl_display];
     }
     printf("-->NULL\n");

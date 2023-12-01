@@ -2,24 +2,33 @@
 #include "contacts.h"
 
 
-t_contact * createContact(){
+t_contact * addNewContact(){
+
+    char name[TAILLE], firstname[TAILLE];
+
+    printf("\nEntrer le nom du contact :");
+    fflush(stdin);
+    fgets(name, sizeof(name), stdin);
+
+    printf("\nEntrer le prenom du contact :");
+    fflush(stdin);
+    fgets(firstname, sizeof(firstname), stdin);
+
+    return createContact(name, firstname);
+}
+
+t_contact * createContact(char *name, char *firstname){
     /* Crée un contact avec son nom, son prénom
     et un ID de la forme "nom_prenom" */
 
     t_contact * new_contact = malloc(sizeof(t_contact));
     int i=0, j=0;
 
-    printf("\nEntrer le nom du contact :");
-    fflush(stdin);
-    fgets(new_contact->name, sizeof(new_contact->name), stdin);
+    name[strlen(name)-1] = '\0';
+    firstname[strlen(firstname)-1] = '\0';
 
-    printf("\nEntrer le prenom du contact :");
-    fflush(stdin);
-    fgets(new_contact->firstname, sizeof(new_contact->firstname), stdin);
-
-
-    new_contact->name[strlen(new_contact->name)-1] = '\0';
-    new_contact->firstname[strlen(new_contact->firstname)-1] = '\0';
+    strcpy(new_contact->name, name);
+    strcpy(new_contact->firstname, firstname);
 
     while (new_contact->name[j] != '\0') {
         if (65 <= new_contact->name[j] && new_contact->name[j] <= 90) {
