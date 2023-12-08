@@ -6,6 +6,7 @@
 
 int main() {
 
+
     // Ici il faudra charger le fichier de l'agenda
 
     char user_input[50];

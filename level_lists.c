@@ -40,3 +40,22 @@ void insertCell(t_d_list * my_list, t_d_cell * new_cell) {
         }
     }
 }
+
+void linearInsertion(t_d_list * my_list, t_d_cell * new_cell) {
+    if ((my_list->heads[0] == NULL) || (strcmp(new_cell->value->ref_ID, my_list->heads[0]->value->ref_ID) < 0))
+        addCellHead(my_list, new_cell);
+
+    else {
+
+        t_d_cell *temp;
+
+        temp = my_list->heads[0];
+
+        while ((temp->next[0] != NULL) && (strcmp(new_cell->value->ref_ID, temp->next[0]->value->ref_ID) > 0))
+            temp = temp->next[0];
+
+        new_cell->next[0] = temp->next[0];
+        temp->next[0] = new_cell;
+
+    }
+}

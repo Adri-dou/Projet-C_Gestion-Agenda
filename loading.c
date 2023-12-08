@@ -8,7 +8,31 @@ void loadRandomPeople(t_d_list * my_list){
     names = give1000RdmNames("../noms.txt");
     firstnames = give1000RdmNames("../prenoms.csv");
 
+
+
+    // On va tester ici les temps d'insertion par niveau, et linéairement
+    FILE *log_file = fopen("log.txt","w");
+    char format[] = "%d\t%s\t%s\n" ;
+    int level;
+    char *time_lvl0;
+    char *time_all_levels;
+
+    startTimer();
     for (int i=0; i < 1000; ++i) insertCell(my_list, createCell(createContact(names[i], firstnames[i]), 4));
+    stopTimer();
+    time_all_levels = getTimeAsString();
+
+    t_d_list new_list_for_tests = createEmptyList(4);
+
+    startTimer();
+    for (int i=0; i < 1000; ++i) linearInsertion(&new_list_for_tests, createCell(createContact(names[i], firstnames[i]), 4));
+    stopTimer();
+    time_lvl0 = getTimeAsString();
+
+    printf("\n\nTemps mis pour creer une liste de 1000 contacts :\n"
+           "Lineairement : %s\n"
+           "Par niveaux : %s\n\n",
+           time_lvl0, time_all_levels);
 }
 
 char ** give1000RdmNames(char * namefile) {
