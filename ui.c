@@ -13,7 +13,8 @@ void displayMainMenu(){
           "\t            3) Supprimer un rendez-vous\n"
           "\t            4) Retour au menu principal\n"
           "\t        2 : Creer un nouveau contact\n"
-          "\t        3 : Quitter l'application\n");
+          "\t        3 : Charger l'ancien agenda (il ecrasera l'actuel)\n"
+          "\t        4 : Quitter l'application\n");
 }
 
 void displaySubMenu(t_contact * ctc) {

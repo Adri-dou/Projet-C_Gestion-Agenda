@@ -51,6 +51,7 @@ int main() {
                     else if (user_input[0] == '3') removeMeeting(ctc);
 
                     else if (user_input[0] == '4') {
+                        printf("\nRetour au menu principal\n");
                         displayMainMenu(); break;
                     } else {
                         printf("\nEntree invalide !"); displaySubMenu(ctc);
@@ -62,8 +63,10 @@ int main() {
         else if (user_input[0] == '2')
             insertCell(&schedule, createCell(addNewContact(), 4)); // Nouveau contact
 
+        else if (user_input[0] == '3')
+            schedule = loadSchedule();
 
-        else if (user_input[0] == '3') {
+        else if (user_input[0] == '4') {
             saveSchedule(schedule);
             printf("\nAu revoir et a bientot !\n\n");
             return 0;

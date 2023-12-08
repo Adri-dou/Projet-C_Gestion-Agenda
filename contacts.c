@@ -24,8 +24,6 @@ t_contact * createContact(char *name, char *firstname){
     t_contact * new_contact = malloc(sizeof(t_contact));
     int i=0, j=0;
 
-    name[strlen(name)-1] = '\0';
-    firstname[strlen(firstname)-1] = '\0';
 
     strcpy(new_contact->name, name);
     strcpy(new_contact->firstname, firstname);
@@ -67,6 +65,13 @@ t_meeting * createMeeting(){
     t_meeting * new_meeting = malloc(sizeof(t_meeting));
     new_meeting->next_meeting = NULL;
 
+    return new_meeting;
+}
+
+
+void addMeeting(t_contact * ctc){
+     t_meeting * new_meeting = createMeeting();
+
     do {
         printf("\nVeuillez saisir la date : jj/mm/aaaa\n >> ");
         scanf("%d/%d/%d", &new_meeting->day, &new_meeting->month, &new_meeting->year);
@@ -87,26 +92,14 @@ t_meeting * createMeeting(){
 
     printf("\nQuel est cet evenement ?\n >>");
     fflush(stdin);
-    fgets(new_meeting->m_description, sizeof(new_meeting->m_description), stdin);
+    fgets(new_meeting->m_description, sizeof(char) * TAILLE*10, stdin);
     new_meeting->m_description[strlen(new_meeting->m_description)-1] = '\0';
 
-    return new_meeting;
-}
-
-
-void addMeeting(t_contact * ctc){
-     t_meeting * new_meeting = createMeeting();
-
-     if (ctc->meetings == NULL) {
-         new_meeting->id = 1;
-         ctc->meetings = new_meeting;
-     }
-     else {
-         t_meeting * tmp = ctc->meetings;
-         while (tmp->next_meeting != NULL) tmp = tmp->next_meeting;
-         new_meeting->id = tmp->id+1;
-         tmp->next_meeting = new_meeting;
-     }
+    // On ajoute en tête de liste le nouveau rdv
+    if (ctc->meetings == NULL) new_meeting->id = 1;
+    else new_meeting->id = ctc->meetings->id + 1;
+    new_meeting->next_meeting = ctc->meetings;
+    ctc->meetings = new_meeting;
 }
 
 void removeMeeting(t_contact * ctc) {
@@ -123,6 +116,7 @@ void removeMeeting(t_contact * ctc) {
             ctc->meetings = tmp->next_meeting;
             free(tmp);
         }
+        else if (tmp->next_meeting == NULL) printf("\nLe rendez-vous n'existe pas");
 
         else {
             while (tmp->next_meeting != NULL && tmp->next_meeting->id != id) tmp = tmp->next_meeting;
@@ -131,7 +125,7 @@ void removeMeeting(t_contact * ctc) {
                 tmp2 = tmp->next_meeting;
                 tmp->next_meeting = tmp2->next_meeting;
                 free(tmp2);
-            }
+            } else printf("\nLe rendez-vous n'existe pas");
         }
     }
 }

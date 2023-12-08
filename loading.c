@@ -31,7 +31,10 @@ char ** give1000RdmNames(char * namefile) {
         random_line = (rand() * rand()) % nb_lines;
         //printf("%d",random_line);
 
-        for (int j=0; j<random_line; j++) fgets(name, sizeof(name), my_file);
+        for (int j=0; j<random_line; j++) {
+            fgets(name, sizeof(name), my_file);
+            name[strlen(name)-1] = '\0';
+        }
 
         strcpy(names[i], name);
 
@@ -61,4 +64,62 @@ void saveSchedule(t_d_list schedule) {
         temp = temp->next[0];
     }
     fclose(save);
+}
+
+t_d_list loadSchedule(){
+    FILE *save = fopen("../schedule-save.csv", "r");
+
+    t_d_list new_list = createEmptyList(4);
+
+    char line[1000], *name, *firstname;
+
+
+    while (fgets(line, sizeof(line), save) != NULL) {
+
+        name = strtok(line, ";");
+        firstname = strtok(NULL, ";");
+
+        t_contact * new_contact = createContact(name, firstname);
+
+        // On crée un nouveau rdv avec tous les elements enregistrés
+        char *tok = strtok(NULL, ";");
+        while (tok != NULL && tok[0] != '\n') {
+
+            t_meeting * new_meeting = createMeeting();
+
+            new_meeting->id = atoi(tok);
+            tok = strtok(NULL, ";");
+
+            new_meeting->day = atoi(tok);
+            tok = strtok(NULL, ";");
+
+            new_meeting->month = atoi(tok);
+            tok = strtok(NULL, ";");
+
+            new_meeting->year = atoi(tok);
+            tok = strtok(NULL, ";");
+
+            new_meeting->hour = atoi(tok);
+            tok = strtok(NULL, ";");
+
+            new_meeting->minute = atoi(tok);
+            tok = strtok(NULL, ";");
+
+            new_meeting->dhour = atoi(tok);
+            tok = strtok(NULL, ";");
+
+            new_meeting->dminute = atoi(tok);
+            tok = strtok(NULL, ";");
+
+            strcpy(new_meeting->m_description, tok);
+            tok = strtok(NULL, ";");
+
+            new_meeting->next_meeting = new_contact->meetings;
+            new_contact->meetings = new_meeting;
+        }
+
+        insertCell(&new_list, createCell(new_contact, 4));
+    }
+    fclose(save);
+    return new_list;
 }
