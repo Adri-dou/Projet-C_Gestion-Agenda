@@ -14,6 +14,8 @@ t_contact * addNewContact(){
     fflush(stdin);
     fgets(firstname, sizeof(firstname), stdin);
 
+    name[strlen(name)-1] = '\0';
+    firstname[strlen(firstname)-1] = '\0';
     return createContact(name, firstname);
 }
 
